@@ -1,8 +1,8 @@
 import * as path from 'path';
 import * as mm from 'micromatch';
-import { JSArchive, JSArchiveObject } from './JSArchive';
-import { Utils } from './utils';
-import { CONST } from './const';
+import { JSArchive, JSArchiveObject } from '../JSArchive';
+import { Utils } from '../utils';
+import { CONST } from '../const';
 
 export interface TypefaceCLIAddOptions {
   fileGlobs?: string[];
