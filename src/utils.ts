@@ -14,6 +14,17 @@ const axios = Axios.create({
   }
 });
 
+async function fetchAllPackageList() {
+  return <Promise<string[]>> axios.request({
+    url: CONST.GITHUB_API_TREE_URL,
+    responseType: 'json',
+    transformResponse: [
+      (data) => data.tree,
+      (data) => data.filter((i: any) => i.type === 'tree'),
+    ],
+  }).then(({ data }) => data);
+}
+
 async function fetchPackageInfo(
   packageName: string,
 ) {
@@ -76,6 +87,7 @@ function getFileType(
 }
 
 export const Utils = {
+  fetchAllPackageList,
   fetchPackageInfo,
   fetchPackageSource,
   getFileType,
