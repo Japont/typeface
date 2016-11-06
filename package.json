@@ -1,31 +1,8 @@
 {
   "name": "typeface",
   "version": "0.0.0",
-  "main": "index.js",
-  "repository": {
-    "url": "git@github.com:Japont/typeface.git",
-    "type": "git"
-  },
   "author": "3846masa <3846masahiro+git@gmail.com>",
-  "license": "MIT",
-  "devDependencies": {
-    "@types/node": "^6.0.46",
-    "sane": "^1.4.1",
-    "typescript": "^2.0.7"
-  },
-  "scripts": {
-    "build": "tsc",
-    "watch": "sane tsc src --glob='**/*.ts'"
-  },
   "dependencies": {
-    "@types/file-type": "^0.0.1",
-    "@types/jszip": "^0.0.31",
-    "@types/micromatch": "^2.3.29",
-    "@types/mkdirp": "^0.3.29",
-    "@types/ora": "^0.3.30",
-    "@types/pify": "^0.0.28",
-    "@types/yamljs": "^0.2.30",
-    "@types/yargs": "^6.3.0",
     "axios": "^0.15.2",
     "cli-columns": "^1.0.6",
     "file-type": "^3.9.0",
@@ -40,5 +17,28 @@
     "tar-stream": "^1.5.2",
     "yamljs": "^0.2.8",
     "yargs": "^6.3.0"
+  },
+  "devDependencies": {
+    "@types/file-type": "^0.0.1",
+    "@types/jszip": "^0.0.31",
+    "@types/micromatch": "^2.3.29",
+    "@types/mkdirp": "^0.3.29",
+    "@types/node": "^6.0.46",
+    "@types/ora": "^0.3.30",
+    "@types/pify": "^0.0.28",
+    "@types/yamljs": "^0.2.30",
+    "@types/yargs": "^6.3.0",
+    "sane": "^1.4.1",
+    "typescript": "^2.0.7"
+  },
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "url": "git@github.com:Japont/typeface.git",
+    "type": "git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "sane tsc src --glob='**/*.ts'"
   }
 }
