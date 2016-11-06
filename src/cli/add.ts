@@ -52,7 +52,7 @@ export async function add (
   if (opts.force !== true && await Utils.exists(packageDir)) {
     return {
       status: 'skip',
-      message: `${packageName} is already downloaded`,
+      message: `Skipped ${packageName}: Already exists`,
     };
   }
 
