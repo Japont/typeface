@@ -52,6 +52,7 @@ async function saveFiles(
 
   for (const filePath of filePathList) {
     const glob = mm.expand(filePath);
+
     if (glob.tokens.is.glob) {
       const matchedFiles =
         <JSArchiveObject[]> archive.file(RegExp(glob.pattern));

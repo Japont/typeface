@@ -11,9 +11,7 @@ export class JSArchive {
 
   constructor() {}
 
-  file(
-    name: string | RegExp,
-  ): JSArchiveObject | JSArchiveObject[] {
+  file(name: string | RegExp): JSArchiveObject | JSArchiveObject[] {
     if (typeof name === 'string') {
       const file = this.files[name];
       if (file) {
@@ -32,17 +30,11 @@ export class JSArchive {
     }
   }
 
-  static async loadAsync(
-    data: Buffer,
-    opts: any = {},
-  ) {
+  static async loadAsync(data: Buffer, opts: any = {}) {
     return new JSArchive().loadAsync(data, opts);
   }
 
-  async loadAsync(
-    data: Buffer,
-    opts: any = {},
-  ): Promise<JSZip | JSArchive> {
+  async loadAsync(data: Buffer, opts: any = {}): Promise<JSZip | JSArchive> {
     this.data = data;
     const fileType = Utils.getFileType(this.data);
 
