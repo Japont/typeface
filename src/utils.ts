@@ -2,6 +2,7 @@ import Axios from 'axios';
 import * as url from 'url';
 import * as YAML from 'yamljs';
 import * as mkdirp from 'mkdirp';
+import * as rimraf from 'rimraf';
 import fileType = require('file-type');
 import * as fs from 'fs';
 import * as pify from 'pify';
@@ -65,6 +66,12 @@ async function mkdirpAsync(
   return <Promise<void>> pify(mkdirp)(dir);
 }
 
+async function rimrafAsync(
+  dir: string,
+) {
+  return <Promise<void>> pify(rimraf)(dir);
+}
+
 async function writeFileAsync(
   filePath: string,
   data: any
@@ -94,6 +101,7 @@ export const Utils = {
   fetchPackageSource,
   getFileType,
   mkdirp: mkdirpAsync,
+  rimraf: rimrafAsync,
   writeFile: writeFileAsync,
   exists: existsAsync,
 };

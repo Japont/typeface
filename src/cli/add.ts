@@ -102,16 +102,10 @@ async function saveFiles(
   const fileList: JSArchiveObject[] = [];
 
   for (const filePath of filePathList) {
-    const glob = mm.expand(filePath);
-
-    if (glob.tokens.is.glob) {
-      const matchedFiles =
-        <JSArchiveObject[]> archive.file(RegExp(glob.pattern));
-      fileList.push(...matchedFiles);
-    } else {
-      const matchedFile = <JSArchiveObject> archive.file(filePath);
-      fileList.push(matchedFile);
-    }
+    const globRegExp = new RegExp(mm.makeRe(filePath));
+    const matchedFiles =
+      <JSArchiveObject[]> archive.file(globRegExp);
+    fileList.push(...matchedFiles);
   }
 
   for (const file of fileList) {

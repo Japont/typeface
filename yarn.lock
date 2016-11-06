@@ -38,6 +38,10 @@
   version "0.0.28"
   resolved "https://registry.yarnpkg.com/@types/pify/-/pify-0.0.28.tgz#682b6c33a1d05748b86f029bdab6f62aa73ff506"
 
+"@types/rimraf":
+  version "0.0.28"
+  resolved "https://registry.yarnpkg.com/@types/rimraf/-/rimraf-0.0.28.tgz#5562519bc7963caca8abf7f128cae3b594d41d06"
+
 "@types/yamljs":
   version "0.2.30"
   resolved "https://registry.yarnpkg.com/@types/yamljs/-/yamljs-0.2.30.tgz#d034e1d329e46e8d0f737c9a8db97f68f81b5382"
@@ -1094,7 +1098,7 @@ restore-cursor@^1.0.1:
     exit-hook "^1.0.0"
     onetime "^1.0.0"
 
-rimraf@~2.5.1, rimraf@~2.5.4, rimraf@2:
+rimraf, rimraf@~2.5.1, rimraf@~2.5.4, rimraf@2:
   version "2.5.4"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.5.4.tgz#96800093cbf1a0c86bd95b4625467535c29dfa04"
   dependencies:
