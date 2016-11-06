@@ -20,6 +20,7 @@ async function fetchAllPackageList() {
     url: CONST.GITHUB_API_TREE_URL,
     responseType: 'json',
     transformResponse: [
+      (data) => JSON.parse(data),
       (data) => data.tree,
       (data) => data.filter((i: any) => i.type === 'tree'),
     ],

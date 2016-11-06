@@ -3,7 +3,7 @@
 // Definitions by: Greg Smith <https://github.com/smrq/>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
-declare module 'fuse' {
+declare module 'fuse.js' {
 	class Fuse {
 		constructor(list: any[], options?: IFuseOptions);
 		search(pattern: string): any[];
