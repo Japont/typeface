@@ -59,6 +59,13 @@ async function writeFileAsync(
   return <Promise<void>> pify(fs.writeFile)(filePath, data);
 }
 
+async function existsAsync(
+  filePath: string,
+) {
+  return <Promise<boolean>> pify(fs.stat)(filePath)
+    .then(() => Promise.resolve(true)).catch(() => Promise.resolve(false));
+}
+
 function getFileType(
   buffer: Buffer,
 ): {
@@ -74,4 +81,5 @@ export const Utils = {
   getFileType,
   mkdirp: mkdirpAsync,
   writeFile: writeFileAsync,
+  exists: existsAsync,
 };

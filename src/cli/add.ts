@@ -7,14 +7,21 @@ import { CONST } from '../const';
 export interface TypefaceCLIAddOptions {
   fileGlobs?: string[];
   addAll?: boolean;
+  force?: boolean;
 }
 
 export async function add (
   packageName: string,
   opts: TypefaceCLIAddOptions = <TypefaceCLIAddOptions>{},
 ) {
-  const packageInfo = await Utils.fetchPackageInfo(packageName);
   const packageDir = path.resolve(CONST.DEFAULT_FONTS_PATH, `./${packageName}/`);
+
+  if (opts.force !== true && Utils.exists(packageDir)) {
+    console.warn(`${packageName} is already added.`);
+    return;
+  }
+
+  const packageInfo = await Utils.fetchPackageInfo(packageName);
 
   if (!Array.isArray(opts.fileGlobs)) {
     if (opts.addAll !== false) {
