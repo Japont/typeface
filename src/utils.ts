@@ -11,7 +11,8 @@ import { TypefaceInfo } from './interfaces';
 const axios = Axios.create({
   headers: {
     'User-Agent': `typeface/${CONST.VERSION}`,
-  }
+  },
+  timeout: 3000,
 });
 
 async function fetchAllPackageList() {
