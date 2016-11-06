@@ -3,6 +3,7 @@ export interface TypefaceInfo {
   authors: string[];
   website: string;
   source: string;
+  files?: string[];
   license: {
     type: string;
     files: string[];
