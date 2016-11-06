@@ -2,8 +2,10 @@
   "name": "typeface",
   "version": "0.0.0",
   "author": "3846masa <3846masahiro+git@gmail.com>",
+  "bin": {
+    "typeface": "./bin/typeface"
+  },
   "dependencies": {
-    "@types/rimraf": "^0.0.28",
     "axios": "^0.15.2",
     "cli-columns": "^1.0.6",
     "file-type": "^3.9.0",
@@ -28,6 +30,7 @@
     "@types/node": "^6.0.46",
     "@types/ora": "^0.3.30",
     "@types/pify": "^0.0.28",
+    "@types/rimraf": "^0.0.28",
     "@types/yamljs": "^0.2.30",
     "@types/yargs": "^6.3.0",
     "sane": "^1.4.1",
