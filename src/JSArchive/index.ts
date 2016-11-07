@@ -40,7 +40,12 @@ export class JSArchive {
 
     switch (fileType.ext) {
       case 'zip': {
-        return new JSZip().loadAsync(this.data, opts);
+        const jsZipOpts = Object.assign({}, opts, {
+          decodeFileName(bytes: Uint8Array) {
+            return Utils.encodeAnyToUTF8(bytes);
+          },
+        });
+        return new JSZip().loadAsync(this.data, jsZipOpts);
       }
 
       case 'tar': {

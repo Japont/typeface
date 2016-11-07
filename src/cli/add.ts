@@ -75,17 +75,23 @@ export async function add (
   const archive = <JSArchive> await JSArchive.loadAsync(sourceBuffer);
 
   await Utils.mkdirp(packageDir);
+  // Save typeface.yml
   await Utils.writeFile(
     path.resolve(packageDir, './typeface.yml'),
     packageInfo.raw,
   );
+  // Extract Font files
   await saveFiles(
     packageDir,
-    [
-      ...opts.fileGlobs,
-      ...packageInfo.license.files,
-    ],
-    archive
+    opts.fileGlobs,
+    archive,
+  );
+  // Extract LICENSE files
+  await saveFiles(
+    packageDir,
+    packageInfo.license.files,
+    archive,
+    true,
   );
 
   return {
@@ -98,6 +104,7 @@ async function saveFiles(
   dirpath: string,
   filePathList: string[],
   archive: JSArchive,
+  isTextFile: boolean = false,
 ) {
   const fileList: JSArchiveObject[] = [];
 
@@ -111,6 +118,11 @@ async function saveFiles(
   for (const file of fileList) {
     const basename = path.basename(file.name);
     const filePath = path.resolve(dirpath, `./${basename}`);
-    await Utils.writeFile(filePath, await file.async('nodebuffer'));
+    const buffer = await file.async('nodebuffer');
+    if (isTextFile) {
+      await Utils.writeFile(filePath, Utils.encodeAnyToUTF8(buffer));
+    } else {
+      await Utils.writeFile(filePath, buffer);
+    }
   }
 }

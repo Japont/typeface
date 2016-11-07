@@ -6,6 +6,8 @@ import * as rimraf from 'rimraf';
 import fileType = require('file-type');
 import * as fs from 'fs';
 import * as pify from 'pify';
+import * as iconv from 'iconv-lite';
+import { detectCharset } from './detect-charset';
 import { CONST } from './const';
 import { TypefaceInfo } from './interfaces';
 
@@ -95,11 +97,18 @@ function getFileType(
   return fileType(buffer);
 }
 
+function encodeAnyToUTF8(bytes: any) {
+  const buffer = Buffer.from(bytes);
+  const charset = detectCharset(buffer);
+  return iconv.decode(buffer, charset);
+}
+
 export const Utils = {
   fetchAllPackageList,
   fetchPackageInfo,
   fetchPackageSource,
   getFileType,
+  encodeAnyToUTF8,
   mkdirp: mkdirpAsync,
   rimraf: rimrafAsync,
   writeFile: writeFileAsync,
