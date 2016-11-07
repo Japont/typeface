@@ -1,9 +1,10 @@
 {
-  "name": "typeface",
+  "name": "japont-typeface",
   "version": "0.0.0",
   "author": "3846masa <3846masahiro+git@gmail.com>",
   "bin": {
-    "typeface": "./bin/typeface"
+    "typeface": "./bin/typeface",
+    "japont-typeface": "./bin/typeface"
   },
   "dependencies": {
     "axios": "^0.15.2",
@@ -39,6 +40,12 @@
     "sane": "^1.4.1",
     "typescript": "^2.0.7"
   },
+  "files": [
+    "bin",
+    "dist",
+    "package.json",
+    "README.md"
+  ],
   "license": "MIT",
   "main": "index.js",
   "repository": {
