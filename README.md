@@ -43,7 +43,7 @@ $ typeface search package-name
 - Alias: `typeface add`, `typeface download`, `typeface install`
 
 ```
-$ typeface install package-name
+$ typeface add package-name
 ```
 
 ### Remove package
@@ -56,7 +56,7 @@ $ typeface remove package-name
 
 ## Contribution
 
-1. Fork it ( http://github.com/Japont/typeface/fork )
+1. Fork it ( https://github.com/Japont/typeface/fork )
 2. Create your feature branch ( `git checkout -b my-new-feature` )
 3. Commit your changes ( `git commit -am 'Add some feature'` )
 4. Push to the branch ( `git push origin my-new-feature` )
