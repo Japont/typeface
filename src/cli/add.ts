@@ -70,29 +70,39 @@ export async function add (
     }
   }
 
-  const sourceBuffer =
-    await Utils.fetchPackageSource(packageInfo.source);
-  const archive = <JSArchive> await JSArchive.loadAsync(sourceBuffer);
+  for (const source of packageInfo.sources) {
+    const sourceBuffer =
+      await Utils.fetchPackageSource(source);
 
-  await Utils.mkdirp(packageDir);
-  // Save typeface.yml
-  await Utils.writeFile(
-    path.resolve(packageDir, './typeface.yml'),
-    packageInfo.raw,
-  );
-  // Extract Font files
-  await saveFiles(
-    packageDir,
-    opts.fileGlobs,
-    archive,
-  );
-  // Extract LICENSE files
-  await saveFiles(
-    packageDir,
-    packageInfo.license.files,
-    archive,
-    true,
-  );
+    if (! Utils.isArchiveFile(sourceBuffer)) {
+      const basename = path.basename(source);
+      const filePath = path.resolve(packageDir, `./${basename}`);
+      await Utils.writeFile(filePath, sourceBuffer);
+      continue;
+    }
+
+    const archive = <JSArchive> await JSArchive.loadAsync(sourceBuffer);
+
+    await Utils.mkdirp(packageDir);
+    // Save typeface.yml
+    await Utils.writeFile(
+      path.resolve(packageDir, './typeface.yml'),
+      packageInfo.raw,
+    );
+    // Extract Font files
+    await saveFiles(
+      packageDir,
+      opts.fileGlobs,
+      archive,
+    );
+    // Extract LICENSE files
+    await saveFiles(
+      packageDir,
+      packageInfo.license.files,
+      archive,
+      true,
+    );
+  }
 
   return {
     status: 'success',

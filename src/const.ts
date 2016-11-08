@@ -6,6 +6,9 @@ export const CONST = {
   GITHUB_API_TREE_URL: 'https://api.github.com/repos/Japont/typeface-packages/git/trees/master',
   VERSION: readPkgUp.sync(__dirname).pkg.version,
   DEFAULT_FONTS_PATH: path.join(process.env['PWD'], './fonts/'),
+  ARCHIVE_EXTS: [
+    'zip', 'tar', 'xz',
+  ],
 };
 
 Object.freeze(CONST);

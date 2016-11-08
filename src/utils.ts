@@ -9,7 +9,7 @@ import * as pify from 'pify';
 import * as iconv from 'iconv-lite';
 import { detectCharset } from './detect-charset';
 import { CONST } from './const';
-import { TypefaceInfo } from './interfaces';
+import { TypefaceInfo, TypefaceInfoRaw } from './interfaces';
 
 const axios = Axios.create({
   headers: {
@@ -41,7 +41,12 @@ async function fetchPackageInfo(
     transformResponse: [
       (data) => Object.assign(YAML.parse(data), { raw: data }),
     ],
-  }).then(({ data }) => data);
+  }).then(({ data }: { data: TypefaceInfoRaw}) => {
+    if (!Array.isArray(data.sources)) {
+      data.sources = [ data.sources ];
+    }
+    return <TypefaceInfo> data;
+  });
 }
 
 async function fetchPackageSource(
@@ -97,6 +102,13 @@ function getFileType(
   return fileType(buffer);
 }
 
+function isArchiveFile(
+  buffer: Buffer,
+) {
+  const fileType = getFileType(buffer);
+  return CONST.ARCHIVE_EXTS.includes(fileType.ext);
+}
+
 function encodeAnyToUTF8(bytes: any) {
   const buffer = Buffer.from(bytes);
   const charset = detectCharset(buffer);
@@ -108,6 +120,7 @@ export const Utils = {
   fetchPackageInfo,
   fetchPackageSource,
   getFileType,
+  isArchiveFile,
   encodeAnyToUTF8,
   mkdirp: mkdirpAsync,
   rimraf: rimrafAsync,
